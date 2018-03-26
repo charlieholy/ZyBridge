@@ -46,8 +46,11 @@ socket.on("publish-price",function(data){
     var b64 = new Buffer(data, 'base64')
     var json = pako.inflate(new Uint8Array(b64), {to: 'string'});
     var sss = decodeURIComponent(json)
-    console.log(sss)
-    ev.evE.emit("ticker",sss);
+    var jd = JSON.parse(sss)
+    jd.instrumentId = commidity[jd.ProductId];
+    var instruData = JSON.stringify(jd)
+    console.log(instruData)
+    ev.evE.emit("ticker",JSON.stringify(instruData));
 })
 socket.on("subscribe-price",function (data) {
     console.log("subscribe-price: " +  data);
