@@ -41,7 +41,13 @@ var broadCase = function (msg) {
     wss.clients.forEach(function (ws) {
         //if(ws.isSub)
         //{
-        ws.send(msg);
+        try{
+            ws.send(msg);
+        }catch (e)
+        {
+            console.log("err: " + e);
+        }
+
         // }
     })
 }

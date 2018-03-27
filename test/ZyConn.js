@@ -74,7 +74,7 @@ var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_
 socket.on('connect', function(msg){
     console.log("connect: " + msg)
     setTimeout(function(){
-        socket.emit("subscribe-price",[commidityNamekey["美原油1805"],commidityNamekey["澳币1806"]]);
+        //socket.emit("subscribe-price",[commidityNamekey["美原油1805"],commidityNamekey["澳币1806"]]);
         socket.emit("load-produt")
         console.log("emit")
     },3000);
@@ -86,9 +86,7 @@ socket.on("load-produt",function (data) {
     {
         var con_ = J_data.content;
         var j_con = JSON.parse(con_);
-        j_con.forEach(function (t) {
-            // console.log(commidity[t])
-        })
+        socket.emit("subscribe-price",j_con)
     }
 
 })
