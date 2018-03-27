@@ -78,7 +78,7 @@ var conn = function () {
             //socket.emit("subscribe-price",[commidityNamekey["美原油1805"],commidityNamekey["澳币1806"]]);
             socket.emit("load-produt")
             console.log("emit")
-        },3000);
+        },1000);
     });
     socket.on("load-produt",function (data) {
         console.log(data)
@@ -94,11 +94,15 @@ var conn = function () {
         var b64 = new Buffer(data, 'base64')
         var json = pako.inflate(new Uint8Array(b64), {to: 'string'});
         var sss = decodeURIComponent(json)
-        console.log(sss)
+        var jd = {}
+        jd = JSON.parse(sss)
+        jd.instrumentId = commidity[jd.ProductId];
+        var instruData = JSON.stringify(jd)
+        console.log(instruData)
+        ev.evE.emit("ticker",instruData);
     })
     socket.on("subscribe-price",function (data) {
         console.log("subscribe-price: " +  data);
-        socket.close()
     })
     socket.on("error",function (err) {
         reconn()
