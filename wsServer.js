@@ -1,6 +1,6 @@
 var WebSocket = require('ws');
 var WebSocketServer = WebSocket.Server
-wss = new WebSocketServer({ port: 10001 });
+wss = new WebSocketServer({ port: 10002 });
 var ev = require("./bowEvent")
 //'open', 'error', 'close', 'message'
 wss.on('connection', function(ws) {
@@ -9,15 +9,9 @@ wss.on('connection', function(ws) {
         //broadCase("num: " + num);
         try{
             var jsub = JSON.parse(message)
-            if("subtick" == jsub.event)
+            if("getCommdity" == jsub.event)
             {
-                if("open" == jsub.status) {
-                    ws.isSub = true
-                }
-                else if("close" == jsub.status)
-                {
-                    ws.isSub = false
-                }
+               ev.evE.emit("getCommdity",ws)
             }
         }catch (e)
         {
@@ -37,21 +31,24 @@ wss.on('connection', function(ws) {
 
 });
 
+ev.evE.on("getCommdityRes",function (ws,msg) {
+    sendtoClent(ws,msg)
+})
+
+var sendtoClent = function (ws,msg) {
+    ws.send(msg);
+}
+
 var broadCase = function (msg) {
     wss.clients.forEach(function (ws) {
-        //if(ws.isSub)
-        //{
         try{
             ws.send(msg);
-        }catch (e)
-        {
+        }catch (e) {
             console.log("err: " + e);
         }
-
-        // }
     })
 }
 
-ev.evE.on("ticker",function (ticker) {
+ev.evE.on("tick",function (ticker) {
     broadCase(ticker)
 })

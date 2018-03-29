@@ -1,5 +1,5 @@
 
-var url = "ws://localhost:10001"
+var url = "ws://localhost:10002"
 let WebSocket = require('ws');
 
 const socket = new WebSocket(url); //如果symbol = 'btccny'或者'ltccny' 请使用wss://api.huobi.com/ws

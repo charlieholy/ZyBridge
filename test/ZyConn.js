@@ -87,7 +87,8 @@ var conn = function () {
         {
             var con_ = J_data.content;
             var j_con = JSON.parse(con_);
-            socket.emit("subscribe-price",j_con)
+            //socket.emit("subscribe-price",j_con)
+            socket.emit("subscribe-price",["fe1b60d0-6ced-49e2-884a-97d0d5934c3f"])
         }
     })
     socket.on("publish-price",function(data){
