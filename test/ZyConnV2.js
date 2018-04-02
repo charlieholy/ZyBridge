@@ -83,15 +83,20 @@ passwd:		cjle4aly*/
 
 
 var conn = function () {
-    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user03',password:'rovx1f6x'}});
+    //183.131.180.105
+    var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user03',password:'rovx1f6x'}});
     socket.on('connect', function(msg){
         console.log("connect: " + msg)
         setTimeout(function(){
             //socket.emit("subscribe-price",[commidityNamekey["美原油1805"],commidityNamekey["澳币1806"]]);
             socket.emit("load-produt")
+            socket.emit("load-produt-tail")
             console.log("emit")
         },1000);
     });
+    socket.on("load-produt-tail",function (data) {
+        console.log(data)
+    })
     socket.on("load-produt",function (data) {
         console.log(data)
         J_data = JSON.parse(data);

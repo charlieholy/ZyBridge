@@ -8,7 +8,7 @@ const io = require('socket.io-client');
 //import io from 'socket.io-client';
 var conn = function () {
     //  http://183.131.180.105:55119
-    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user04',password:'cjle4aly'}});
+    var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user04',password:'cjle4aly'}});
     socket.on('connect', function(msg){
         console.log("connect: " + msg)
         setTimeout(function(){
