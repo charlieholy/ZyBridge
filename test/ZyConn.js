@@ -70,8 +70,20 @@ let pako = require('pako');
 const io = require('socket.io-client');
 // or with import syntax
 //import io from 'socket.io-client';
+
+
+/*user: 	quota_user02
+passwd: 	sfvo3cnh
+
+user:	quota_user03
+passwd:		rovx1f6x
+
+user:	quota_user04
+passwd:		cjle4aly*/
+
+
 var conn = function () {
-    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user04',password:'cjle4aly'}});
+    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user03',password:'rovx1f6x'}});
     socket.on('connect', function(msg){
         console.log("connect: " + msg)
         setTimeout(function(){

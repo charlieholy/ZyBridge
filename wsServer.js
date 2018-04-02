@@ -6,12 +6,16 @@ var ev = require("./bowEvent")
 wss.on('connection', function(ws) {
     ws.on('message', function(message) {
         console.log("msg: " + message);
-        //broadCase("num: " + num);
         try{
             var jsub = JSON.parse(message)
-            if("getCommdity" == jsub.event)
+            if("getCommdity" == jsub.event)                //获取品种信息
             {
                ev.evE.emit("getCommdity",ws)
+            }
+            else if("subCommdity" == jsub.event)          //订阅品种
+            {
+                var productId = jsub.data
+                ev.evE.emit("subCommdity",productId,ws)
             }
         }catch (e)
         {

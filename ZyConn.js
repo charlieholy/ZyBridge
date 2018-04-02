@@ -25,7 +25,7 @@ var conn = function () {
             var con_ = J_data.content;
             var j_con = JSON.parse(con_);
             console.log("commodity number: " + j_con.length)
-            socket.emit("subscribe-price",j_con)
+            //socket.emit("subscribe-price",j_con)
         }
     })
     socket.on("publish-price",function(data){
@@ -40,7 +40,7 @@ var conn = function () {
         commidityNamekey[ProductId] = jd;
 
         //打印所有品种行情
-        //console.log(instruData)
+        console.log(instruData)
         var channel = {}
         channel.channel = "tick"
         channel.data = jd
@@ -48,7 +48,7 @@ var conn = function () {
     })
     socket.on("subscribe-price",function (data) {
         //打印订阅成功信息
-        //console.log("subscribe-price: " +  data);
+        console.log("subscribe-price: " +  data);
     })
     socket.on("error",function (err) {
         reconn()
@@ -66,13 +66,20 @@ var conn = function () {
             setTimeout(conn, 1000);
         }
     }
+    ev.evE.on("subCommdity",function (data,ws) {
+        var j_con = []
+        j_con.push(data)
+        socket.emit("subscribe-price",j_con)
+    })
 }
 
+// 获取事件
 ev.evE.on("getCommdity",function (ws) {
     var channel = {}
     channel.channel = "commodity"
     channel.data = commidityNamekey
     ev.evE.emit("getCommdityRes",ws,JSON.stringify(channel));
 })
+
 
 conn();
