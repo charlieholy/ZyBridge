@@ -39,6 +39,12 @@ ev.evE.on("getCommdityRes",function (ws,msg) {
     sendtoClent(ws,msg)
 })
 
+ev.evE.on("disconn",function () {
+    wss.clients.forEach(function (ws) {
+        ws.close()
+    })
+})
+
 var sendtoClent = function (ws,msg) {
     ws.send(msg);
 }

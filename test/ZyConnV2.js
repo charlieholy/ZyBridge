@@ -95,7 +95,11 @@ var conn = function () {
         },1000);
     });
     socket.on("load-produt-tail",function (data) {
-        console.log(data)
+        console.log("load-produt-tail" + data)
+        var j = JSON.parse(data);
+        var content = j.content;
+        var j_content = JSON.parse(content)
+        console.log(JSON.stringify(j_content))
     })
     socket.on("load-produt",function (data) {
         console.log(data)

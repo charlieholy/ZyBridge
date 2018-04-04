@@ -8,7 +8,9 @@ const io = require('socket.io-client');
 //import io from 'socket.io-client';
 var conn = function () {
     //  http://183.131.180.105:55119
-    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user04',password:'cjle4aly'}});
+    //user: 	quota_user02
+   // passwd: 	sfvo3cnh
+    var socket = io.connect('http://183.131.180.105:55118',{query:{loginName:'quota_user02',password:'sfvo3cnh'}});
     socket.on('connect', function(msg){
         console.log("connect: " + msg)
         setTimeout(function(){
@@ -46,6 +48,8 @@ var conn = function () {
         channel.channel = "tick"
         channel.data = jd
         ev.evE.emit("tick",JSON.stringify(channel));
+        //test for resub
+        //setTimeout(close,1000);
     })
     socket.on("subscribe-price",function (data) {
         //打印订阅成功信息
@@ -60,9 +64,13 @@ var conn = function () {
         console.log('disconnect')
     })
     var isDis = false;
+    var close = function () {
+        socket.close()
+    }
     var reconn = function(){
         if(!isDis)
         {   console.log("reconn");
+            ev.evE.emit("disconn");
             isDis = true;
             setTimeout(conn, 1000);
         }

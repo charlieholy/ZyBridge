@@ -99,8 +99,10 @@ var conn = function () {
         {
             var con_ = J_data.content;
             var j_con = JSON.parse(con_);
-            socket.emit("subscribe-price",j_con)
-            //socket.emit("subscribe-price",["584f9e42-038c-4f7b-9f16-abe687924646"])
+            console.log(JSON.stringify(j_con))
+
+            //socket.emit("subscribe-price",j_con)
+            socket.emit("subscribe-price",["b87a6d3f-adfd-4b06-8da9-3ced44ee5d42"])
         }
     })
     socket.on("publish-price",function(data){
