@@ -107,6 +107,7 @@ var conn = function () {
         if(J_data.content)
         {
             var con_ = J_data.content;
+            console.log("sub: " + con_)
             var j_con = JSON.parse(con_);
             socket.emit("subscribe-price",j_con)
             //socket.emit("subscribe-price",["584f9e42-038c-4f7b-9f16-abe687924646"])
@@ -116,6 +117,7 @@ var conn = function () {
         var b64 = new Buffer(data, 'base64')
         var json = pako.inflate(new Uint8Array(b64), {to: 'string'});
         var sss = decodeURIComponent(json)
+        console.log(sss)
         var jd = {}
         jd = JSON.parse(sss)
         jd.instrumentId = commidity[jd.ProductId];

@@ -2,6 +2,7 @@
   "name": "ZyBridge",
   "version": "0.0.1",
   "dependencies": {
+    "mysql": "^2.15.0",
     "pako": "^1.0.6",
     "socket.io-client": "^2.0.4"
   }
