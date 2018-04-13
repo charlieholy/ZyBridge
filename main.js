@@ -1,2 +1,2 @@
-require("./ZyConn")
+require("./ZyConnV2")
 require("./wsServer")
