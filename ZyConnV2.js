@@ -8,10 +8,11 @@ const io = require('socket.io-client');
 //import io from 'socket.io-client';
 var conn = function () {
     //  http://183.131.180.105:55119
-	///*user: 	quota_user02
-	//passwd: 	sfvo3cnh
+    ///*user: 	quota_user02
+    //passwd: 	sfvo3cnh
     console.log("before conn")
-    var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user02',password:'sfvo3cnh'}});
+    //var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user02',password:'sfvo3cnh'}});
+    var socket = io.connect('http://175.102.5.136:55118',{query:{loginName:'quota_user01',password:'WQmLneqB'}});
     console.log("after conn")
 
     var check_conn = function(){
@@ -42,7 +43,7 @@ var conn = function () {
             var con_ = J_data.content;
             var j_con = JSON.parse(con_);
             console.log("commodity number: " + j_con.length)
-           //socket.close();
+            //socket.close();
             //socket.emit("subscribe-price",j_con)
         }
     })
