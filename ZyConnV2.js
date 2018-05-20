@@ -6,13 +6,18 @@ let ev = require('./bowEvent')
 const io = require('socket.io-client');
 // or with import syntax
 //import io from 'socket.io-client';
+//中阳账户
+
+//quota_user01:WQmLneqB
+//quota_user02:riMghPrH
+//quota_user03:EGbVagPV
 var conn = function () {
     //  http://183.131.180.105:55119
     ///*user: 	quota_user02
     //passwd: 	sfvo3cnh
     console.log("before conn")
     //var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user02',password:'sfvo3cnh'}});
-    var socket = io.connect('http://175.102.5.136:55118',{query:{loginName:'quota_user01',password:'WQmLneqB'}});
+    var socket = io.connect('http://175.102.5.136:55118',{query:{loginName:'quota_user03',password:'EGbVagPV'}});
     console.log("after conn")
 
     var check_conn = function(){
@@ -84,10 +89,15 @@ var conn = function () {
             setTimeout(conn, 1000);
         }
     }
-    ev.evE.on("subCommdity",function (data,ws) {
-        var j_con = []
-        j_con.push(data)
-        socket.emit("subscribe-price",j_con)
+    ev.evE.on("subCommdity",function (data) {
+        console.log("evE rev subCommdity: " + data)
+        if(isConn)
+        {
+            console.log("io send subscribe-price: ")
+            var j_con = []
+            j_con.push(data)
+            socket.emit("subscribe-price",j_con)
+        }
     })
 }
 
