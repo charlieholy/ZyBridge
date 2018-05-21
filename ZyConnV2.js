@@ -17,7 +17,7 @@ var conn = function () {
     //passwd: 	sfvo3cnh
     console.log("before conn")
     //var socket = io.connect('http://183.131.180.105:55119',{query:{loginName:'quota_user02',password:'sfvo3cnh'}});
-    var socket = io.connect('http://175.102.5.136:55118',{query:{loginName:'quota_user03',password:'EGbVagPV'}});
+    var socket = io.connect('http://175.102.5.136:55118',{query:{loginName:'quota_user02',password:'riMghPrH'}});
     console.log("after conn")
 
     var check_conn = function(){
@@ -34,7 +34,7 @@ var conn = function () {
         isConn = true;
         console.log("connect: " + msg)
         setTimeout(function(){
-            //socket.emit("subscribe-price",[commidityNamekey["美原油1805"],commidityNamekey["澳币1806"]]);
+            //socket.emit("subscribe-price",["7c21590c-45cb-4fe2-a9d4-d4a1970d8d19"]);
             socket.emit("load-produt")
             console.log("emit")
         },1000);
@@ -64,7 +64,8 @@ var conn = function () {
         commidityNamekey[ProductId] = jd;
 
         //打印所有品种行情
-        console.log(instruData)
+        console.log(jd.InterContractNo + " " + jd.DateTimeStamp )
+        //console.log(jd)
         var channel = {}
         channel.channel = "tick"
         channel.data = jd
